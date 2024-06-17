@@ -1,0 +1,259 @@
+
+{% extends 'Base-front.html.twig' %}
+
+{% block spin %}
+
+{% endblock %}
+
+
+ {% block content %}
+
+ {% endblock %}
+
+
+ {% block dechets %}
+ {% endblock %}
+
+
+{% block body %}
+     
+     <div class="container-xxl py-5">
+        <div class="container">
+            <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="fs-5 fw-medium fst-italic text-primary">Reservation</p>
+                <h1 class="display-6">Voici vos Reservation</h1>
+                 <input type="text" id="searchInput" placeholder="Search...">
+
+            </div>
+             
+            <div class="row g-4">
+        </div>
+ </div>
+
+    <h1></h1>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4 text-center"></h1>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover shadow">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Quantite</th>
+                            <th>Date</th>
+                            <th>Date_ramassage</th>
+                            <th>Nom_fournisseur</th>
+                            <th>Numero_tell</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for reservation_dechet in reservation_dechets %}
+                        <tr>
+                            <td>{{ reservation_dechet.id }}</td>
+                            <td>{{ reservation_dechet.quantite }}</td>
+                            <td>{{ reservation_dechet.date ? reservation_dechet.date|date('Y-m-d') : '' }}</td>
+                            <td>{{ reservation_dechet.dateRamassage ? reservation_dechet.dateRamassage|date('Y-m-d') : '' }}</td>
+                            <td>{{ reservation_dechet.nomFournisseur }}</td>
+                            <td>{{ reservation_dechet.numeroTell }}</td>
+                            <td>
+                                <a href="{{ path('app_reservation_dechets_show', {'id': reservation_dechet.id}) }}" class="btn btn-info btn-sm">Show</a>
+                                <a href="{{ path('app_reservation_dechets_edit', {'id': reservation_dechet.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center">No records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+<!-- Contact Start -->
+    <div class="container-xxl contact py-5">
+        <div class="container">
+            <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="fs-5 fw-medium fst-italic text-primary">Contact Us</p>
+                <h1 class="display-6">Contact us right now</h1>
+            </div>
+            <div class="row justify-content-center wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-8">
+                    <p class="text-center mb-5">Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</p>
+                    <div class="row g-5">
+                        <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="btn-square mx-auto mb-3">
+                                <i class="fa fa-envelope fa-2x text-white"></i>
+                            </div>
+                            <p class="mb-2">Floreo@esprit.tn</p>
+                            <p class="mb-0">suppFloreo@esprit.tn</p>
+                        </div>
+                        <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="btn-square mx-auto mb-3">
+                                <i class="fa fa-phone fa-2x text-white"></i>
+                            </div>
+                            <p class="mb-2">+216 50767065</p>
+                            <p class="mb-0">+216 96464552</p>
+                        </div>
+                        <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="btn-square mx-auto mb-3">
+                                <i class="fa fa-map-marker-alt fa-2x text-white"></i>
+                            </div>
+                            <p class="mb-2">123 Street</p>
+                            <p class="mb-0">New York, USA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Start -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-primary mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>123 Street,Esprit, Ariana Soghra</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+216 50767065</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>Floreo@Esprit.tn</p>
+                    <div class="d-flex pt-3">
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-primary mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Our Services</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-primary mb-4">Business Hours</h4>
+                    <p class="mb-1">Monday - Friday</p>
+                    <h6 class="text-light">09:00 am - 07:00 pm</h6>
+                    <p class="mb-1">Saturday</p>
+                    <h6 class="text-light">09:00 am - 12:00 pm</h6>
+                    <p class="mb-1">Sunday</p>
+                    <h6 class="text-light">Closed</h6>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-primary mb-4">Newsletter</h4>
+                    <p>Feel free to write us down something</p>
+                    <div class="position-relative w-100">
+                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="fw-medium" href="#">Floreo</a>, All Right Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    Designed By <a class="fw-medium" href="https://htmlcodex.com">Floreo</a> Distributed By <a class="fw-medium" href="https://themewagon.com">BOZ  </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("searchInput");
+        const rows = document.querySelectorAll("table tbody tr");
+
+        searchInput.addEventListener("input", function() {
+            const searchText = this.value.toLowerCase();
+
+            rows.forEach(row => {
+                const quantite = row.querySelector("td:nth-child(1)").textContent.toLowerCase();
+                const date = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+                const date_ramassage = row.querySelector("td:nth-child(3)").textContent.toLowerCase();
+                const nom_fournisseur = row.querySelector("td:nth-child(4)").textContent.toLowerCase();
+                const numero_tell = row.querySelector("td:nth-child(5)").textContent.toLowerCase();
+                
+            
+                if (quantite.includes(searchText) || date.includes(searchText) || date_ramassage.includes(searchText) || nom_fournisseur.includes(searchText)  || numero_tell.includes(searchText)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    });
+</script>
+ {# Pagination #}
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="text-center">
+				{{ knp_pagination_render(reservation_dechets) }}
+			</div>
+		</div>
+	</div>
+
+	{# style of pagination #}
+	<style>
+		.pagination {
+			display: flex;
+			justify-content: center;
+			list-style: none;
+			padding: 0;
+		}
+
+		.pagination li {
+			margin: 0 5px;
+		}
+
+		.button-container {
+			display: flex;
+			flex-direction: row;
+			overflow-x: auto;
+			white-space: nowrap;
+		}
+
+
+		.button-container button {
+			margin-right: 10px; /* Espacement entre les boutons */
+		}
+
+		.pagination a {
+			text-decoration: none;
+			padding: 5px 10px;
+			border: 1px solid #404a3d; /* Bleu */
+			border-radius: 3px;
+			color: #404a3d; /* Bleu */
+		}
+
+		.pagination a:hover {
+			background-color: #404a3d; /* Bleu au survol */
+			color: #fff; /* Texte blanc au survol */
+		}
+	</style>
+
+{% endblock %}
+
+
+
+
+

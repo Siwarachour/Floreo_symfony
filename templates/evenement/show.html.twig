@@ -1,0 +1,66 @@
+ {% extends 'base-back.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+<div style="text-align: center; margin-left:180px;">
+    <h1 h1 style="font-family: 'Arial', sans-serif; font-size: 24px; color: #333; border-collapse: collapse;">Evenement</h1>
+
+    <table class="table"  style="margin: 0 auto; width: 50%;">
+       <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 8px; border: 1px solid #ddd;">Attribute</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">Value</th>
+                </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">ID</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ evenement.id }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Name of Event</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ evenement.nameevent }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Type of Event</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ evenement.type }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Start Date</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ evenement.datedebut ? evenement.datedebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">End Date</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ evenement.datefin ? evenement.datefin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Description</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ evenement.description }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Number of participants</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ evenement.nbparticipant }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">¨Place</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ evenement.lieu }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Image</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ evenement.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+     
+
+
+    <button type="button" class="btn btn-info btn-rounded" data-mdb-ripple-init style="margin-top :20px; border-radius: 50px;" onclick="window.location.href='{{ path('app_evenement_index') }}'">Back to List</button>
+
+
+        <button type="button" class="btn btn-info btn-rounded" data-mdb-ripple-init style="margin-top :20px; border-radius: 50px;" onclick="window.location.href= '{{ path('app_evenement_edit', {'id': evenement.id}) }}'">edit</button>
+
+    {{ include('evenement/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

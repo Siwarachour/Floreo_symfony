@@ -1,0 +1,83 @@
+{% extends 'sign/signup.html.twig' %}
+
+{% block signup %}
+    <link rel="stylesheet" href="Back/css/style.css">
+
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center mb-4" style="color:#433e5b">Register</h1>
+                        <hr class="si">
+
+                        {{ form_start(registrationForm, {attr: {novalidate: 'novalidate'}}) }}
+
+                        <div class="form-group">
+                            {{ form_widget(registrationForm.name, {'attr': {'class': 'form-control', 'placeholder': 'Name'}}) }}
+                            {{ form_errors(registrationForm.name) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(registrationForm.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Lastname'}}) }}
+                            {{ form_errors(registrationForm.lastname) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Email address'}}) }}
+                            {{ form_errors(registrationForm.email) }}
+                        </div>
+
+                        <div class="form-group" >
+                            {{ form_widget(registrationForm.datenaissance, {'attr': {'class': 'form-control', 'placeholder': 'Date of Birth'}}) }}
+                            {{ form_errors(registrationForm.datenaissance) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(registrationForm.number, {'attr': {'class': 'form-control', 'placeholder': 'Number'}}) }}
+                            {{ form_errors(registrationForm.number) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Password'}}) }}
+                            {{ form_errors(registrationForm.plainPassword) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(registrationForm.image, {'attr': {'class': 'form-control', 'placeholder': 'Image'}}) }}
+                            {{ form_errors(registrationForm.image) }}
+                        </div>
+
+                        <div class="form-group" style="margin-left:140px" >
+                            <div  id="recaptcha" class="g-recaptcha" data-sitekey="{{ '6LdAepApAAAAAHopURj5k92fAOqG-nwN6k2Ifb5i' }}"></div>
+                        </div>
+
+                        <div class="form-group" >
+                            <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color:#70952b; border-color:#70952b">Sign up</button>
+                        </div>
+
+                        {{ form_end(registrationForm) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdAepApAAAAAHopURj5k92fAOqG-nwN6k2Ifb5i"></script>
+    <script>
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.enterprise.ready(async () => {
+                const token = await grecaptcha.enterprise.execute('6LdAepApAAAAAHopURj5k92fAOqG-nwN6k2Ifb5i', {action: 'LOGIN'});
+                // Ici, vous pouvez envoyer le token reCAPTCHA avec le formulaire pour validation côté serveur
+            });
+        }
+    </script>
+{% endblock %}

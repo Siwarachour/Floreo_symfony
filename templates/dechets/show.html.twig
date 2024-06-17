@@ -1,0 +1,74 @@
+{% extends 'Base-back.html.twig' %}
+
+{% block back %}
+
+{% block title %}Dechets{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Dechets Details</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="row">Id</th>
+                        <td>{{ dechet.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Type</th>
+                        <td>{{ dechet.type }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date d'entrée</th>
+                        <td>{{ dechet.dateEntre ? dechet.dateEntre|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Quantité</th>
+                        <td>{{ dechet.quantite }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td>{{ dechet.description }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">image</th>
+                        <td>{{ dechet.image }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-3 text-center">
+        <a href="{{ path('app_dechets_index') }}" class="btn btn-primary me-2">Back to list</a>
+        <a href="{{ path('app_dechets_edit', {'id': dechet.id}) }}" class="btn btn-warning me-2">Edit</a>
+        <!-- Assuming your delete form is a POST form, you might want to use a modal for confirmation -->
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+            Delete
+        </button>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this item?
+                </div>
+                <div class="modal-footer">
+                    {{ include('dechets/_delete_form.html.twig', {'attr': {'class': 'btn btn-danger'}}) }}
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% endblock %}

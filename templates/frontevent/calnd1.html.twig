@@ -1,0 +1,72 @@
+
+ {% extends 'Base-front.html.twig' %}
+{% block title %}
+    Calendrier event
+
+
+{% endblock %}
+
+
+    {% block head %}
+     <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    
+
+ {% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+    <link href="{{ asset('/fullcalendar/main.min.css')}}" rel="stylesheet">
+    <style>
+        #calendrier{
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+
+
+    {#     {{ dump(data) }}  #}
+    <div id="calendrier">
+    </div>
+{% endblock %}
+
+{% block js %}
+
+ <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+
+    <script>
+        window.onload = () => {
+            let calendarElt = document.querySelector("#calendrier")
+            let calendar = new FullCalendar.Calendar(calendarElt, {
+                initialView: 'dayGridMonth',
+                // initialView: 'timeGridWeek',
+                locale: 'fr',
+                timeZone: 'Europe/Paris',
+                headerToolbar: {
+                    start: 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth,timeGridWeek'
+                },
+                   events: {{ data|raw }},
+                editable: true,
+                eventResizableFromStart: true,
+                eventContent: function(arg) {
+                    let eventEl = document.createElement('div');
+                    eventEl.innerHTML = arg.event.title;
+                    // Customize the appearance of the event title
+                    eventEl.style.backgroundColor = arg.event.backgroundColor;
+                    eventEl.style.color = '#ffffff'; // Change text color
+                    eventEl.style.padding = '5px';
+                    eventEl.style.borderRadius = '5px';
+                    return { domNodes: [eventEl] };
+                }
+            });
+            calendar.render();
+        }
+    </script>
+{% endblock %}

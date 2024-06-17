@@ -1,0 +1,48 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Reclamation{% endblock %}
+
+{% block body %}
+    <h1>Reclamation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reclamation.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ reclamation.type }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ reclamation.description }}</td>
+            </tr>
+            <tr>
+                <th>Dateajout</th>
+                <td>{{ reclamation.dateajout ? reclamation.dateajout|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Datemodif</th>
+                <td>{{ reclamation.datemodif ? reclamation.datemodif|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+              <tr>
+                <th>reponse</th>
+                <td> {% for reponse in reponses %}
+                </br>
+                {{ reponse.description }}
+                     {% else %}
+            <tr>
+                <td colspan="4">Aucun reponse trouvé</td>
+            </tr>
+        {% endfor %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_index') }}">Retour</a>
+
+    <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">Modifier</a>
+    {{ include('reclamation/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'Base-front.html.twig' %}
+{% block com %}
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <div style="margin: 20px;">
+        <h1 style="color: #333; font-size: 24px; margin-bottom: 20px; text-align: center;">Commande</h1>
+
+        {% for commande in commande %}
+            <table class="table" style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; margin-bottom: 20px;">
+                <tbody>
+                    <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2; width: 30%;">Montant</th>
+                        <td style="padding: 10px;">{{ commande.montant }}</td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Datecmd</th>
+                        <td style="padding: 10px;">{{ commande.datecmd ? commande.datecmd|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Lieucmd</th>
+                        <td style="padding: 10px;">{{ commande.lieucmd }}</td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Quantité</th>
+                        <td style="padding: 10px;">{{ commande.quantite }}</td>
+                    </tr>
+                        <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Id produit</th>
+                        <td style="padding: 10px;">{{ commande.produit.id }}</td>
+                    </tr>
+                       <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Nom produit</th>
+                        <td style="padding: 10px;">{{ commande.produit.nomp }}</td>
+                    </tr>
+                       <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Prix produit</th>
+                        <td style="padding: 10px;">{{ commande.produit.prix }}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+            <a href="{{ path('app_commande_edit', {'id': commande.id}) }}" style="text-decoration: none; color: #007bff; margin-right: 10px; display: block; text-align: center;">Edit</a>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+
+{% endblock %}

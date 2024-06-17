@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Reçus</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: 'Arial', sans-serif;
+				text-align: center;
+				background-image: url('{{ imagePath }}');
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				color: white; /* Text color */
+			}
+
+
+			header {
+				background-color: transparent; /* Make the header transparent */
+				color: white;
+				text-align: center;
+				padding: 20px;
+				margin-bottom: 20px;
+			}
+
+			.card-container {
+				display: flex;
+				justify-content: center;
+				gap: 20px;
+				padding: 20px;
+			}
+
+			.card {
+				flex-basis: 30%; /* Adjust width for three cards in a row */
+				border: 2px solid green; /* Blue border */
+				border-radius: 10px;
+				box-shadow: green; /* Box shadow for depth */
+				transition: transform 0.3s ease-in-out;
+			}
+
+			.card:hover {
+				transform: scale(1.05); /* Enlarge on hover */
+			}
+
+			.card-body {
+				padding: 20px;
+			}
+
+			.list-group-item {
+				list-style: none;
+				margin: 10px 0;
+				padding: 8px;
+				border-radius: 5px;
+				background-color: #dee2e6; /* Light gray background for list items */
+			}
+
+			.list-group-item strong {
+				margin-right: 10px;
+			}
+			.footer {
+				position: fixed; /* Position the footer at the bottom */
+				bottom: 0;
+				width: 100%; /* Set width to 100% */
+				text-align: center;
+				padding: 10px;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1 style="color :green">Reçus</h1>
+		</header>
+
+		<div class="card-container">
+			{% for commande in commades %}
+				<div class="card text-center">
+					<div class="card-header">
+						Commande ID:
+						{{ commande.id }}
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">Montant:
+							{{ commande.montant }}
+							TND</h5>
+						<p class="card-text">Total Quantite:
+							{{ commande.quantite }}</p>
+						<p class="card-text">Date Validation:
+							{{ commande.datecmd ? commande.datecmd|date('Y-m-d') : '' }}</p>
+                            <p class="card-text">Produit id:
+							{{ commande.produit.id }}</p>
+                               <p class="card-text">Produit nom:
+							{{ commande.produit.nomp }}</p>
+                              <p class="card-text">Produit prix:
+							{{ commande.produit.prix }}</p>
+					</div>
+				</div>
+				<br>
+			{% endfor %}
+			<div class="footer">
+				Generated on:
+				{{ "now"|date("Y-m-d H:i:s") }}
+			</div>
+		</div>
+
+	</body>
+
+</html>

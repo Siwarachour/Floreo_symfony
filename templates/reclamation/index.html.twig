@@ -1,0 +1,67 @@
+ {% extends 'base-back.html.twig' %}
+
+{% block title %}Reclamation index{% endblock %}
+
+{% block body %}
+    <h1>Liste des reclamations</h1>
+                        <a href="{{ path('pdfwess') }}">telecharge pdf</a>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Dateajout</th>
+                <th>Datemodif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <input type="text" id="searchInput" placeholder="Rechercher...">
+
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.type }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.dateajout ? reclamation.dateajout|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reclamation.datemodif ? reclamation.datemodif|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_reclamation_showback', {'id': reclamation.id}) }}">details</a>
+                    <a href="{{ path('app_reponse_new', {'reclamationid': reclamation.id }) }}">reponse</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun reclamation trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{ knp_pagination_render(reclamations) }}
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("searchInput");
+        const rows = document.querySelectorAll("table tbody tr");
+
+        searchInput.addEventListener("input", function() {
+            const searchText = this.value.toLowerCase();
+
+            rows.forEach(row => {
+                const type = row.querySelector("td:nth-child(1)").textContent.toLowerCase();
+                const description = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+                const dateajout = row.querySelector("td:nth-child(3)").textContent.toLowerCase();
+                const datemodif = row.querySelector("td:nth-child(4)").textContent.toLowerCase();
+
+                if (type.includes(searchText) || description.includes(searchText) || dateajout.includes(searchText) || datemodif.includes(searchText)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    });
+</script>
+
+
+{% endblock %}

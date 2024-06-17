@@ -1,0 +1,64 @@
+ {% extends 'base-back.html.twig' %}
+
+{% block title %}New Sponsor{% endblock %}
+
+{% block body %}
+ 
+
+   
+
+
+
+
+    
+  
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <h2 style="color: blue; font-size: 24px; font-weight: bold; text-align: center;">Add new Sponsor</h2>
+            <div class="card">
+                <div class="card-body">
+                   
+                    <h4 class="card-description"> </h4>
+                    {{ form_start(form , {'attr': {'novalidate':'novalidate'}} ) }}
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        {{ form_row(form.name, {'label':' name' ,'attr':{'placeholder': 'name...', 'class':'form-control'}}) }}</div>
+						<div class="form-group">
+                        <div class="form-group">
+                        {{ form_row(form.email, {'label':'email' ,'attr':{'placeholder': 'email...', 'class':'form-control'}}) }}</div>
+                      
+                        <div class="form-group">
+                        {{ form_row(form.number, {'label':'Number' ,'attr':{'placeholder': '523...', 'class':'form-control'}}) }}
+						</div>
+                       
+					
+                      
+					 
+                      <button type="submit" class="btn btn-primary mr-2" >Add Sponsor</button>
+                        <a href="{{ path('app_sponsor_index') }}">back to list</a>
+                     {{form_end(form)}} 
+                    </form>
+
+   
+       </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+
+
+
+
+    
+
+
+
+
+
+    
+{% endblock %}
+
+

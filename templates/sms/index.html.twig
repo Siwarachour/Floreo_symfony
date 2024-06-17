@@ -1,0 +1,117 @@
+{% block body %}
+    <style>
+        /* Custom Styles */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            border-radius: 10px 10px 0 0;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #007bff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            padding: 12px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Additional Styles */
+        .form-control:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        .form-control:focus:-moz-placeholder {
+            color: transparent;
+        }
+
+        .form-control:focus::-moz-placeholder {
+            color: transparent;
+        }
+
+        .form-control:focus:-ms-input-placeholder {
+            color: transparent;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 576px) {
+            .card {
+                margin-top: 20px;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Envoyer un SMS</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{{ path('send_sms') }}">
+                            <div class="form-group">
+                                <label for="number">Numéro de téléphone :</label>
+                                <input type="text" name="number" id="number" class="form-control" placeholder="Numéro de téléphone" required>
+                            </div>
+
+                            <div class="form-group" id="form-name">
+                                <label for="name">Nom de l'expéditeur :</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Nom de l'expéditeur" required>
+                            </div>
+                            <div class="form-group" id="form-message">
+                                <label for="text">Message :</label>
+                                <textarea name="text" id="text" class="form-control" rows="5" placeholder="Votre message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block" >Envoyer le SMS</button>
+                                  <a href="{{ path('app_commande_show') }}">back to list</a>
+                        </form>
+                    </div>
+                </div>
+                {% if smsSent %}
+                    <div class="alert alert-success mt-3 text-center">Le SMS a été envoyé avec succès.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

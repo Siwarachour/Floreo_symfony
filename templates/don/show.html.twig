@@ -1,0 +1,41 @@
+{% extends 'Base-back.html.twig' %}
+{% block dashboard %}
+{% block title %}Don{% endblock %}
+
+{% block body %}
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h1 style="text-align: center; margin-bottom: 20px;">Don Details</h1>
+
+        <table class="table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <tbody>
+                <tr>
+                    <th style="padding: 10px; background-color: #f2f2f2;">Id</th>
+                    <td style="padding: 10px;">{{ don.id }}</td>
+                </tr>
+                <tr>
+                    <th style="padding: 10px; background-color: #f2f2f2;">Type</th>
+                    <td style="padding: 10px;">{{ don.type }}</td>
+                </tr>
+                <tr>
+                    <th style="padding: 10px; background-color: #f2f2f2;">Description</th>
+                    <td style="padding: 10px;">{{ don.description }}</td>
+                </tr>
+                <tr>
+                    <th style="padding: 10px; background-color: #f2f2f2;">Date_don</th>
+                    <td style="padding: 10px;">{{ don.dateDon ? don.dateDon|date('Y-m-d') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="{{ path('app_don_index') }}" style="text-decoration: none; color: #007bff; margin-right: 10px;">Back to List</a>
+            <a href="{{ path('app_don_edit', {'id': don.id}) }}" style="text-decoration: none; color: #007bff;">Edit</a>
+        </div>
+
+        {{ include('don/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
+
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+ {% extends 'base-back.html.twig' %}
+
+{% block title %}Modifier votre Reclamation{% endblock %}
+
+{% block body %}
+    <h1> Modifier votre Reclamation</h1>
+
+     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                   <div class="row">
+    <div class="col-md-6 mb-3">
+        <label for="exampleFormControlTextarea1">Description</label>
+        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '3'}}) }}
+        {{ form_errors(form.description) }}
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <label for="validationCustom04">Type</label>
+        {{ form_widget(form.type, {'attr': {'class': 'form-control', 'id': 'validationCustom04', 'placeholder': 'Type', 'required': 'required'}}) }}
+        {{ form_errors(form.type) }}
+        <div class="invalid-feedback">
+            Please provide a valid type.
+        </div>
+    </div>
+</div>
+
+
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+
+                    {{ form_end(form) }}
+<div>
+    <a class="btn btn-primary" href="{{ path('app_reclamation_index') }}">Retour </a></div>
+{% endblock %}

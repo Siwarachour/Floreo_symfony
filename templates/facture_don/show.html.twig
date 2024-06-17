@@ -1,0 +1,51 @@
+{% extends 'Base-back.html.twig' %}
+{% block dashboard %}
+{% block title %}FactureDon{% endblock %}
+
+{% block body %}
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h1 style="text-align: center; margin-bottom: 20px;">FactureDon Details</h1>
+
+        <table class="table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <tbody>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Id</th>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ facture_don.id }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Nom Donateur</th>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ facture_don.nomDonateur }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Prénom Donateur</th>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ facture_don.prenomDonateur }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ facture_don.email }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Adresses</th>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ facture_don.adresses }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Numéro Téléphone</th>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ facture_don.numeroTelephone }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Description</th>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ facture_don.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="{{ path('app_facture_don_index') }}" style="text-decoration: none; color: #007bff;">Back to List</a>
+            <a href="{{ path('app_facture_don_edit', {'id': facture_don.id}) }}" style="text-decoration: none; color: #007bff; margin-left: 10px;">Edit</a>
+        </div>
+
+        {{ include('facture_don/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
+
+{% endblock %}

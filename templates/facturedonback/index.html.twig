@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FactureDon index{% endblock %}
+
+{% block body %}
+    <h1>FactureDon index</h1>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_donateur</th>
+                <th>Prenom_donateur</th>
+                <th>Email</th>
+                <th>Adresses</th>
+                <th>Numero_telephone</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for facture_don in facture_dons %}
+            <tr>
+                <td>{{ facture_don.id }}</td>
+                <td>{{ facture_don.nomDonateur }}</td>
+                <td>{{ facture_don.prenomDonateur }}</td>
+                <td>{{ facture_don.email }}</td>
+                <td>{{ facture_don.adresses }}</td>
+                <td>{{ facture_don.numeroTelephone }}</td>
+                <td>{{ facture_don.description }}</td>
+                <td>
+                    <a href="{{ path('app_facturedonback_show', {'id': facture_don.id}) }}">show</a>
+                    <a href="{{ path('app_facturedonback_edit', {'id': facture_don.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# Affichage de la pagination #}
+    <div class="pagination">
+        {{ knp_pagination_render(facture_dons) }}
+    </div>
+
+    <a href="{{ path('app_facturedonback_new') }}">Create new</a>
+{% endblock %}

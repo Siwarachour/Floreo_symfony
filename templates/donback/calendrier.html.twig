@@ -1,0 +1,70 @@
+{% extends 'Base-back.html.twig' %}
+{% block dashboard %}
+{% block title %} Calendrier{% endblock %}
+
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <main id="main" class="main">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous">
+
+        <div id="calendrier"></div>
+        <div>
+            {# <a href="{{ path('adminallocation') }}">Back to allocation list</a> #}
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js" integrity="sha256-YicH/8aE660iEnJtgll3vT54dJApy3XkYmqNfGVFEzA=" crossorigin="anonymous"></script>
+
+        <style>
+            #calendrier {
+                width: 80%;
+                margin: auto;
+            }
+
+            .fc-daygrid-day {
+                color: white;
+                font-weight: bold;
+                text-align: center;
+                padding: 10px;
+            }
+
+            .fc-day-sun {
+                background-color: #bae3e2;
+            }
+
+            .fc-day-mon {
+                background-color: #bae3e2;
+            }
+
+            .fc-day-tue {
+                background-color: #bae3e2;
+            }
+
+            /* Add styles for other days of the week as needed */
+        </style>
+
+        <script>
+            window.onload = () => {
+                let calendarElt = document.querySelector("#calendrier");
+                let calendar = new FullCalendar.Calendar(calendarElt, {
+                    initialView: 'dayGridMonth',
+                    locale: 'ang',
+                    timeZone: 'Europe/Paris',
+                    headerToolbar: {
+                        start: 'prev,next today',
+                        center: 'title',
+                        end: 'dayGridMonth timeGridWeek'
+                    },
+                    events: {{ data | raw }}
+                });
+
+                calendar.render();
+            }
+        </script>
+    </main>
+
+{% endblock %}
+{% endblock %}

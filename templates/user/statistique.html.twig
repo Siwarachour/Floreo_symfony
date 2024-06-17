@@ -1,0 +1,95 @@
+{% extends 'Base-back.html.twig' %}
+
+{% block title %}Statistiques Utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin-left: 250px; margin-top: 50px;">
+        <h1 class="text-center">Statistic Users</h1>
+        <div>
+            <canvas id="usersByRoleChart" width="50" height="10"></canvas>
+        </div>
+        
+    </div>
+     <div class="container" style="margin-left: 250px; margin-top: 50px;">
+        <h1 class="text-center">Statistic Age Of Client </h1>
+        <div>
+            <canvas id="usersByAgeChart" width="500" height="10"></canvas>
+        </div>
+        
+    </div>
+
+    {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            // Fonction pour générer les couleurs du dégradé en fonction du nombre de rôles
+            function generateGradientColors(count) {
+                var startColor = [255, 255, 255]; // Couleur blanche de départ
+                var endColor = [136, 180, 78];    // Couleur verte de fin
+                var step = 1 / count;
+                var colors = [];
+
+                for (var i = 0; i < count; i++) {
+                    var r = Math.round(startColor[0] + (endColor[0] - startColor[0]) * (step * i));
+                    var g = Math.round(startColor[1] + (endColor[1] - startColor[1]) * (step * i));
+                    var b = Math.round(startColor[2] + (endColor[2] - startColor[2]) * (step * i));
+                    var color = 'rgba(' + r + ',' + g + ',' + b + ', 0.6)';
+                    colors.push(color);
+                }
+
+                return colors;
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Statistiques par rôle
+                var ctxRoles = document.getElementById('usersByRoleChart').getContext('2d');
+                var usersByRoleChart = new Chart(ctxRoles, {
+                    type: 'bar',
+                    data: {
+                        labels: {{ roles|json_encode|raw }},
+                        datasets: [{
+                            label: 'Nombre d\'utilisateurs par rôle',
+                            data: {{ usersCount|json_encode|raw }},
+                            backgroundColor: generateGradientColors({{ usersCount|length }}),
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+
+                // Statistiques par âge (Graphique en cercle)
+                var ctxAge = document.getElementById('usersByAgeChart').getContext('2d');
+                var usersByAgeChart = new Chart(ctxAge, {
+                    type: 'pie',
+                    data: {
+                        labels: {{ ageGroups|json_encode|raw }},
+                        datasets: [{
+                            label: 'Nombre d\'utilisateurs par tranche d\'âge',
+                            data: {{ userCounts|json_encode|raw }},
+                            backgroundColor: generateGradientColors({{ userCounts|length }}),
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    {% endblock %}
+{% endblock %}

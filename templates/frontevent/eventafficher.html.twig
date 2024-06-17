@@ -1,0 +1,160 @@
+{% extends 'base-front.html.twig' %}
+
+
+{% block css%}
+ <!-- Favicon -->
+    <link href="{{asset('Front/img/favicon.icon')}}" rel="icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Protest+Strike&display=swap" rel="stylesheet">
+     <!-- AOS ANIMATED ON SCROLL-->
+
+      <link rel="stylesheet" href="bower_components/aos/dist/aos.css" />
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('/Front/lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('/Front/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    
+    <link href="{{ asset('/Front/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+    <!-- Template Stylesheet -->
+    <link href="{{ asset('/Front/css/eventaffiche.css')}}" rel="stylesheet">
+  
+     {% endblock %}
+  {% block body %}
+
+   <!-- Carousel Start -->
+    <div class="container-fluid px-0 mb-5">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style=" background: transparent;">
+                    <img class="w-100" src="{{asset('img/pic4.jpg')}}" alt="Image">
+                    <div class="carousel-caption">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-7 text-center">
+                                    <p class="fs-4 text-white animated zoomIn"> <strong class="custom-text" style="font-family: Permanent Marker, cursive;
+  font-weight: 400;
+  font-style: normal; color: #0e741f;"> Welcome To Floreo's</strong></p>
+                                    <h1 class="display-1  mb-4 animated zoomIn" style=" color:#0e741f;">Events</h1>
+                                    <a href="/main" class="btn btn-light rounded-pill py-3 px-5 animated zoomIn">Home</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="{{asset('img/pichead.jpg')}}" alt="Image">
+                    <div class="carousel-caption">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-7 text-center">
+                                    <p class="fs-4 text-white animated zoomIn"><strong class=""custom-text"" style="font-family: Permanent Marker, cursive;
+  font-weight: 400;
+  font-style: normal;color:#0e741f;"> Welcome To Floreo's</strong></p>
+                                   <h1 class="display-1  mb-4 animated zoomIn" style=" color:#0e741f;">Events</h1>
+                                    <a href="/main" class="btn btn-light rounded-pill py-3 px-5 animated zoomIn">Home</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="carousel-item">
+                    <img class="w-100" src="{{asset('img/header3.jpg')}}" alt="Image">
+                    <div class="carousel-caption">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-7 text-center">
+                                    <p class="fs-4 text-white animated zoomIn"><strong style="font-family: Permanent Marker, cursive;
+  font-weight: 400;
+  font-style: normal;color: #0e741f;"> Welcome To Floreo's</strong></p>
+                                   <h1 class="display-1 mb-4 animated zoomIn" style=" color: #0e741f;">Events</h1>
+                                    <a href="/main" class="btn btn-light rounded-pill py-3 px-5 animated zoomIn">Home</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Carousel End -->
+<!-- Store Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class=" fw-medium  text-primary" style="font-family: Permanent Marker, cursive;
+  font-weight: 400;
+  font-style: normal; font-size:30px;">Our upcoming Events</p>
+                <h1 class="display-6">Join hands for a greener tomorrow!</h1>
+            </div> 
+               <div class="container-xxl py-5">
+        <div class="container">
+         <a  class="btn btn-danger btn-sm" href="{{ path('calendar') }}">
+        <i class="far fa-calendar-alt">
+        </i>
+        Afficher calendrier
+    </a>
+       
+            <div class="row g-4" style="margin-top:50px;">
+             {% for e in evenements %}
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="store-item position-relative text-center mb-4">
+                        <img class="img-fluid"  src="{{ asset('uploads/' ~ e.image) }}" alt="{{ e.nameevent }}" style="width: 300px; height: 400px;">
+                        <div class="p-4">
+                        
+                            <h4 class="mb-3">{{ e.nameevent }}</h4>
+                             <p>Start Date: {{ e.datedebut|date('Y-m-d') }}</p>
+                    <p>End Date: {{ e.datefin|date('Y-m-d') }}</p>
+                            <h4  style="font-family: Protest Strike, sans-serif;
+  font-weight: 100; font-size:15px;
+  font-style: normal;"> Sponsored by : {{ e.Sponsor }}</h4>
+                        </div>
+                        <div class="store-overlay">
+                            <a href="{{ path('detailf', {'id': e.id}) }}" class="btn btn-primary rounded-pill py-2 px-4 m-2">More Detail <i class="fa fa-arrow-right ms-2"></i></a>
+                          <form id="participate-form" action="{{ path('app_evenement_participate', {'id': e.id}) }}" method="POST">
+    <input type="hidden" name="eventId" value="{{ e.id }}">
+    <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Participate</button>     
+               
+</form>
+                        </div>
+                    </div>
+                </div>
+          {% if loop.index % 3 == 0 %}<!-- houny gaaed ishouf kn iteration l ehnee fyha welee tetqassm aa 3 maanehee rao lezmo yarjaa lstar 
+          o lokhra ==0 ishouf kn iteration l ehnee fyha multiple de 3 donc lezmo yarjaa l star-->
+        </div>
+        <div class="row g-4"> <!-- taawed thel block ekhr bsh yetzedo 3 lokhryn tahto-->
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    <!-- Store End -->
+
+ {% endblock %}
+
+
+    

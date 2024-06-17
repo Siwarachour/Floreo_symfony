@@ -1,0 +1,57 @@
+ {% extends 'base-back.html.twig' %}
+
+{% block title %}Sponsor{% endblock %}
+
+{% block body %}
+<div style="text-align: center; margin-left:180px; margin-top:90px;">
+    <h1 h1 style="font-family: 'Arial', sans-serif; font-size: 24px; color: #333; border-collapse: collapse;">Sponsor</h1>
+
+    <table class="table"  style="margin: 0 auto; width: 50%;">
+       <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 8px; border: 1px solid #ddd;">Attribute</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">Value</th>
+                </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">ID</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ sponsor.id }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Sponsor's Name</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ sponsor.name }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Email</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ sponsor.email }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Contact</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ sponsor.number }}</td>
+            </tr>
+        
+        </tbody>
+    </table>
+
+     
+
+
+    <button type="button" class="btn btn-info btn-rounded" data-mdb-ripple-init style="margin-top :20px; border-radius: 50px;" onclick="window.location.href='{{ path('app_sponsor_index') }}'">Back to List</button>
+
+
+        <button type="button" class="btn btn-info btn-rounded" data-mdb-ripple-init style="margin-top :20px; border-radius: 50px;" onclick="window.location.href= '{{ path('app_sponsor_edit', {'id': sponsor.id}) }}'">Update</button>
+
+    {{ include('sponsor/_delete_form.html.twig') }}
+    </div>
+   
+
+
+
+
+
+
+
+
+{% endblock %}
+ 

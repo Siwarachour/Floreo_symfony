@@ -1,0 +1,104 @@
+
+
+{% block title %}Don {% endblock %}
+
+{% block body %}
+    <h1>Don </h1>
+   <!-- [ Pre-loader ] End -->
+    <!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar">
+        <div class="navbar-wrapper">
+            <div class="navbar-content scroll-div">
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>tables</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('app_facturedonback_index')}}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Facture_Don</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('app_donback_index')}}" class="nav-link"><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Don</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- [ navigation menu ] end -->
+
+
+    <div class="text-center"> <!-- Ajout de la classe text-center pour centrer verticalement et horizontalement -->
+      /  <input type="text" id="searchInput" placeholder="Sch...">
+
+        <table class="table mx-auto"> <!-- Ajout de la classe mx-auto pour centrer horizontalement -->
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Date_don</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for don in dons %}
+                <tr>
+                    <td>{{ don.id }}</td>
+                    <td>{{ don.type }}</td>
+                    <td>{{ don.description }}</td>
+                    <td>{{ don.dateDon ? don.dateDon|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_donback_show', {'id': don.id}) }}">show</a>
+                        <a href="{{ path('app_donback_edit', {'id': don.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<!-- Inclusion de la bibliothèque Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Code HTML pour le graphique -->
+<h2 style="color:#012970; text-align: center;">Statistique don</h2>
+<div class="category-statistics">
+    <canvas id="categoryChart" width="300 px" height="100 px"></canvas>
+</div>
+
+<!-- Script JavaScript pour initialiser le graphique -->
+<script>
+    var ctx = document.getElementById('categoryChart').getContext('2d');
+    var colors = ['#87CEEB', '#012970'];
+
+    var data = {
+        labels: [
+            {% for stat in donStatistics %}
+                '{{ stat.type }}',
+            {% endfor %}
+        ],
+        datasets: [{
+            data: [
+                {% for stat in donStatistics %}
+                    {{ stat.donCount }},
+                {% endfor %}
+            ],
+            backgroundColor: colors
+        }]
+    };
+
+    var categoryChart = new Chart(ctx, {
+        type: 'pie',
+        data: data
+    });
+</script>
+
+    </div>
+    <a href="{{ path('app_donback_new') }}">Create new</a>
+    
+
+
+
+{% endblock %}

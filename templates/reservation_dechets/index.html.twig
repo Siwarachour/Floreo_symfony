@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReservationDechets index{% endblock %}
+
+{% block body %}
+    <h1>ReservationDechets index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>Date</th>
+                <th>Date_ramassage</th>
+                <th>Nom_fournisseur</th>
+                <th>Numero_tell</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation_dechet in reservation_dechets %}
+            <tr>
+                <td>{{ reservation_dechet.id }}</td>
+                <td>{{ reservation_dechet.quantite }}</td>
+                <td>{{ reservation_dechet.date ? reservation_dechet.date|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation_dechet.dateRamassage ? reservation_dechet.dateRamassage|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation_dechet.nomFournisseur }}</td>
+                <td>{{ reservation_dechet.numeroTell }}</td>
+                <td>
+                    <a href="{{ path('app_reservation_dechets_show', {'id': reservation_dechet.id}) }}">show</a>
+                    <a href="{{ path('app_reservation_dechets_edit', {'id': reservation_dechet.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reservation_dechets_new') }}">Create new</a>
+{% endblock %}

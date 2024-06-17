@@ -1,0 +1,178 @@
+{% extends 'Base-back.html.twig' %}
+
+{% block head %}
+    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 11]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+{% endblock %}
+
+{% block css %}
+    <!-- Required CSS mtaa lbase lokhra -->
+    <!-- Favicon icon -->
+    <link rel="icon" href="{{ asset('Back/images/favicon.ico') }}" type="image/x-icon">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{{ asset('Back/css/style.css') }}">
+    <!-- Required CSS mtaa lbase lokhra --> 
+    <!-- This page plugin CSS -->
+    <link href="{{ asset('dataTables.bootstrap4.css') }}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ asset('eve/dist/css/style.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Welcome To Lists </h4>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li class="breadcrumb-item"><a href="/back" class="text-muted">Home</a></li>
+                                   >
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- basic table -->
+                <div class="row">
+  
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Users list</h4>
+                                <a href="{{ path('app_user_new') }}">Create new</a>
+                               
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table table-striped table-bordered no-wrap">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>User's email</th>
+                                                <th>FirstName</th>
+                                                <th>LastName Date</th>
+                                                <th>Number</th>
+                                                <th>Password</th>
+                                                <th>Role</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           {% for user in users %}
+                                            <tr>
+                                                <td>{{ user.id }}</td>
+                                                <td>{{ user.email }}</td>
+                                                <td>{{ user.name }}</td>
+                                                <td>{{ user.lastname }}</td>
+                                                <td>{{ user.number }}</td>
+                                                <td>{{ user.password }}</td>
+                                                <td>
+                                                    {% for role in user.roles %}
+                                                        {% if role == 'ROLE_FOURNISSEUR' %}
+                                                            Fournisseur
+                                                        {% elseif role == 'ROLE_CLIENT' %}
+                                                            Client
+                                                        {% endif %}
+                                                        {% if not loop.last %}, {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                                                    <a href="{{ path('app_user_delete', {'id': user.id}) }}">Delete</a>
+                                                    <a href="{{ path('app_user_update', {'id': user.id}) }}">Update</a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+{% endblock %}
+
+{% block js %}
+    <!-- Required Js mtaa lbase lokhra -->
+    <script src="{{ asset('Back/js/vendor-all.min.js') }}"></script>
+    <script src="{{ asset('Back/js/plugins/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('Back/js/pcoded.min.js') }}"></script>
+
+   
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="{{ asset('eve/assets/libs/jquery/dist/jquery.min.js') }}"></script>
+    
+    <script src="{{ asset('eve/dist/js/app-style-switcher.js') }}"></script>
+    <script src="{{ asset('eve/dist/js/feather.min.js') }}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{{ asset('eve/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="{{ asset('eve/assets/extra-libs/sparkline/sparkline.js') }}"></script>
+    <!--Wave Effects -->
+    <!-- themejs -->
+    <!--Menu sidebar -->
+    <script src="{{ asset('eve/dist/js/sidebarmenu.js') }}"></script>
+    <!--Custom JavaScript -->
+    <script src="{{ asset('eve/dist/js/custom.min.js') }}"></script>
+    <!--This page plugins -->
+   {% endblock %}

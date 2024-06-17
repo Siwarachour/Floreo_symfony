@@ -1,0 +1,54 @@
+{% extends 'fan.html.twig' %}
+
+{% block title %}New Evenement{% endblock %}
+
+{% block body %}
+    
+  
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <h2 style="color: Grey; font-size: 24px; font-weight: bold; text-align: center;">Create new User</h2>
+            <div class="card">
+                <div class="card-body">
+                   
+                    <h4 class="card-description"> Form</h4>
+                    {{ form_start(form , {'attr': {'novalidate':'novalidate'}} ) }}
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        {{ form_row(form.name, {'label':' Name' ,'attr':{'placeholder': 'name...', 'class':'form-control','required': true}}) }}</div>
+						<div class="form-group">
+                       <div class="form-group">
+    {{ form_row(form.lastname, {'label':'LastName' ,'attr':{'placeholder': 'lastname...', 'class':'form-control'}, 'required': true}) }}
+</div>
+                        {{ form_row(form.email, {'label':'Email' ,'attr':{'placeholder': 'email...', 'class':'form-control'}}) }}
+                      </div>
+                        
+                        <div class="form-group">
+                        {{ form_row(form.password, {'label':'Paswword' ,'attr':{'placeholder': ' password...', 'class':'form-control'}}) }}</div>
+					<div class="form-group">
+                        {{ form_row(form.number, {'label':'Number' ,'attr':{'placeholder': 'number...', 'class':'form-control'}}) }}
+                       </div>
+						{{ form_row(form.roles, {'label':'Role' ,'attr':{'placeholder': 'Role...', 'class':'form-control'}}) }}
+
+
+                            <td>
+    
+</td>
+					 
+                      <button type="submit"  style="color:green;border-color:green" ><a  href="app_user_update"></a>Update User</button>
+                       {{form_end(form)}} 
+                    </form>
+
+       </div>
+            </div>
+        </div>
+    </div>
+      <button type="button" class="btn btn-outline-warning" style="margin-left:500px; color:green;border-color:green" onclick="window.location.href='/profile'">Back To Profil</button>
+
+</div>
+ 
+                   
+
+  
+{% endblock %}

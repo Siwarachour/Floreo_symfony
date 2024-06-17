@@ -1,0 +1,100 @@
+{% extends 'Base-back.html.twig' %}
+{% block dashboard %}
+{% block title %}FactureDon index{% endblock %}
+
+{% block body %}
+<div style="padding-bottom: 300px;"> <!-- Added left padding here -->
+
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h1 style="text-align: center; margin-bottom: 20px;">Factures Dons </h1>
+                                <a href="{{ path('pdffacture') }}">factures</a>
+
+        
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names">
+        
+        <table class="table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #ccc; padding: 10px;">Id</th>
+                    <th style="border: 1px solid #ccc; padding: 10px;">Nom Donateur</th>
+                    <th style="border: 1px solid #ccc; padding: 10px;">Prénom Donateur</th>
+                    <th style="border: 1px solid #ccc; padding: 10px;">Email</th>
+                    <th style="border: 1px solid #ccc; padding: 10px;">Adresses</th>
+                    <th style="border: 1px solid #ccc; padding: 10px;">Numéro Téléphone</th>
+                    <th style="border: 1px solid #ccc; padding: 10px;">Description</th>
+                    <th style="border: 1px solid #ccc; padding: 10px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for facture_don in facture_dons %}
+                <tr>
+                    <td style="border: 1px solid #ccc; padding: 10px;">{{ facture_don.id }}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px;">{{ facture_don.nomDonateur }}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px;">{{ facture_don.prenomDonateur }}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px;">{{ facture_don.email }}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px;">{{ facture_don.adresses }}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px;">{{ facture_don.numeroTelephone }}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px;">{{ facture_don.description }}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px;">
+                        <a href="{{ path('app_facture_don_show', {'id': facture_don.id}) }}" style="text-decoration: none; color: #007bff;">Show</a>
+                        <a href="{{ path('app_facture_don_edit', {'id': facture_don.id}) }}" style="text-decoration: none; color: #007bff; margin-left: 10px;">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" style="border: 1px solid #ccc; padding: 10px;">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+       
+    </div>
+
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector(".table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1]; // Recherche dans la deuxième colonne (Nom Donateur)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    {# Manual pagination controls #}
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if currentPage > 1 %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ path('app_facture_don_index', {'page': currentPage - 1}) }}">Previous</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% for page in 1..totalPages %}
+                            <li class="page-item{% if page == currentPage %} active{% endif %}">
+                                <a class="page-link" href="{{ path('app_facture_don_index', {'page': page}) }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                        
+                        {% if currentPage < totalPages %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ path('app_facture_don_index', {'page': currentPage + 1}) }}">Next</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                </div>
+    
+{% endblock %}
+{% endblock %}

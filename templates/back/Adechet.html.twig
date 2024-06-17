@@ -1,0 +1,82 @@
+{% extends 'Base-back.html.twig' %}
+
+{% block body %}
+{% block title %}New Dechets{% endblock %}
+<div style="padding-bottom: 300px;"> <!-- Added left padding here -->
+
+{# Enhanced Custom Style #}
+<style>
+    .custom-form-wrapper {
+        background-color: #f8f9fa;
+        margin: 30px auto;
+        padding: 25px;
+        max-width: 700px;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-control {
+        border-radius: 0.375rem;
+        height: calc(2.25rem + 2px);
+    }
+    .btn-custom {
+        background-color: #17a2b8;
+        color: #fff;
+        font-size: 16px;
+        padding: 10px 30px;
+        border: none;
+        transition: background-color 0.2s ease-in-out;
+    }
+    .btn-custom:hover {
+        background-color: #138496;
+    }
+    .form-header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .form-header h2 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #343a40;
+    }
+</style>
+
+<div class="custom-form-wrapper">
+    <div class="form-header">
+        <h2>Add New Dechet Details</h2>
+    </div>
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form'}}) }}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.type) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.date_entre) }}
+            {{ form_widget(form.date_entre, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.date_entre) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.quantite) }}
+        {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.quantite) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '3'}}) }}
+        {{ form_errors(form.description) }}
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-custom">{{ button_label|default('Save') }}</button>
+    </div>
+    {{ form_end(form) }}
+</div>
+</div>
+{% endblock %}
+
+
+            

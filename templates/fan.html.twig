@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zxx">
+
+
+<!-- index40:10-->
+<head>
+
+    <!-- meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{asset('fan/assets/
+css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('fan/assets/
+css/fontawesome-all.css')}}">
+
+
+    <link rel="stylesheet" href="{{asset('fan/assets/
+css/smartmenus.css')}}">
+    <link rel="stylesheet" href="{{asset('fan/assets/
+style.css')}}">
+
+    <link rel="stylesheet" href="{{asset('fan/assets/
+css/responsive.css')}}">
+
+</head>
+
+<body class="home">
+<div id="ritekhela-loader">
+    <div id="ritekhela-loader-inner">
+        <div id="ritekhela-shadow"></div>
+        <div id="ritekhela-box"></div>
+    </div>
+</div>
+
+<div class="ritekhela-wrapper">
+
+    <!--// Header //-->
+    <header id="ritekhela-header" class="ritekhela-header-one">
+
+        <!--// TopStrip //-->
+        <div class="ritekhela-topstrip"style=" background-color:#6c757d;" >
+            <div class="container">
+                <div class="row">
+
+                    <aside class="col-md-6" >
+                        <strong>Latest News :</strong>
+                        <div class="ritekhela-latest-news-slider">
+                            <div class="ritekhela-latest-news-slider-layer">Welcome User you can show your profile </div>
+                         
+                        </div>
+                    </aside>
+                    <aside class="col-md-6">
+                        <ul class="ritekhela-user-strip">
+
+                            <li ><a href="{{ path('app_logout') }}"><i class="fa fa-user-alt"></i> Logout</a></li>
+
+                        </ul>
+                    </aside>
+
+                </div>
+            </div>
+        </div>
+        <!--// TopStrip //-->
+
+        <!--// Main Header //-->
+        <div class="ritekhela-main-header"style="  background-color:#6c757d;">
+            <div class="container">
+
+                <div class="row">
+                    <div style="text-align:center ; color:white;" class="col-md-12">
+                        <h1  align="center" style="font-size:36pt; background-color:#88B44E">Welcome To Floreo </h1>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a href="index-2.html" ><img src="{{asset('Front/img/logo.png')}}  " width="10%" height="200%" alt=""></a>
+
+                       
+                                          
+
+    </header>
+    <!--// Header //-->
+
+
+    <!--// Content //-->
+    <div class="ritekhela-main-content">
+
+        <!--// Main Section //-->
+        <div class="ritekhela-main-section ritekhela-fixture-slider-full">
+            {% block body %}
+            {% endblock %}
+
+        </div>
+        <!--// Main Section //-->
+
+    </div>
+    <!--// Content //-->
+
+   
+
+</div>
+
+
+<!--// Login ModalBox //-->
+<div class="loginmodalbox modal fade" id="ritekhelamodalcenter" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body ritekhela-bgcolor-two">
+                <h5 class="modal-title">Login To Your Account</h5>
+                <a href="#" class="close ritekhela-bgcolor-two" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times"></i>
+                </a>
+                <form class="loginmodalbox-search">
+                    <input type="text" value="Enter User Name" onblur="if(this.value == '') { this.value ='Enter User Name'; }" onfocus="if(this.value =='Enter User Name') { this.value = ''; }">
+                    <input type="text" value="Type Here Password" onblur="if(this.value == '') { this.value ='Type Here Password'; }" onfocus="if(this.value =='Type Here Password') { this.value = ''; }">
+                    <input type="submit" value="Login Now" class="ritekhela-bgcolor">
+                    <a href="#" class="loginmodalbox-forget">Forget Password?</a>
+                </form>
+                <div class="ritekhela-loginbox-social">
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li class="twitter"><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li class="linkedin"><a href="#"><i class="fab fa-linkedin-in"></i> Linkedin</a></li>
+                        <li class="dribbble"><a href="#"><i class="fab fa-dribbble"></i> Dribbble</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- jQuery -->
+<script src="{{asset('fan/assets/
+script/jquery.js')}}"></script>
+<script src="{{asset('fan/assets/
+script/popper.min.js')}}"></script>
+<script src="{{asset('fan/assets/
+script/bootstrap.min.js')}}"></script>
+<script src="{{asset('fan/assets/
+script/slick.slider.min.js')}}"></script>
+<script src="{{asset('fan/assets/
+script/fancybox.min.js')}}"></script>
+<script src="{{asset('fan/assets/
+script/isotope.min.js')}}"></script>
+<script src="{{asset('fan/assets/
+script/smartmenus.min.js')}}"></script>
+<script src="{{asset('fan/assets/
+script/progressbar.js')}}"></script>
+<script src="{{asset('fan/assets/
+script/jquery.countdown.min.js')}}"></script>
+<script src="{{asset('fan/assets/
+script/functions.js')}}"></script>
+</body>
+
+
+<!-- index40:10-->
+</html>

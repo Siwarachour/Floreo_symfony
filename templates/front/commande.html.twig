@@ -1,0 +1,60 @@
+
+{% extends 'Base-front.html.twig' %}
+{% block title %}Calendar
+{% endblock %}
+
+{% block body %}
+<!-- Form Section Start -->
+<div class="container-xxl py-5">
+        <div class="container">
+            <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class=" fw-medium  text-primary" style="font-family: Permanent Marker, cursive;
+  font-weight: 400;
+  font-style: normal; font-size:30px;">Our organic products</p>
+                <h1 class="display-6">Reserve your product Now!</h1>
+            </div> 
+               <div class="container-xxl py-5">
+        <div class="container">
+
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">Commande Form</h2>
+{{ form_start(form, {'attr': {'class': 'my-form-class', 'novalidate': 'novalidate'}}) }}
+
+        <div class="mb-3">
+            {{ form_label(form.datecmd, 'Date Commande', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.datecmd, {'attr': {'class': 'form-control', 'placeholder': 'Select Date'}}) }}
+            {{ form_errors(form.datecmd) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.lieucmd, 'Lieucmd', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.lieucmd, {'attr': {'class': 'form-control', 'placeholder': 'Enter Lieucmd'}}) }}
+            {{ form_errors(form.lieucmd) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.quantite, 'Quantite', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.quantite, {'attr': {'class': 'form-control', 'placeholder': 'Enter Quantite'}}) }}
+            {{ form_errors(form.quantite) }}
+        </div>
+
+        <!-- Display the selected product name -->
+        <div class="mb-3">
+            <label class="form-label">Product</label>
+            <input type="text" class="form-control" value="{{ selectedProduit.nomp }}" readonly>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+        </div>
+        {{ form_end(form) }}
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+  

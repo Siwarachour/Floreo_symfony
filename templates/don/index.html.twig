@@ -1,0 +1,156 @@
+{% extends 'Base-back.html.twig' %}
+{% block dashboard %}
+{% block title %}Don index{% endblock %}
+
+{% block body %}
+        <div style="padding-left: 300px;"> <!-- Added left padding here -->
+
+    <h1>Don index</h1>
+
+    <style>
+        /* CSS styles for the table */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+        /* CSS styles for the links */
+        .action-links a {
+            margin-right: 5px;
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+                    <input type="text" id="searchInput" onkeyup="searchDon()" placeholder="Search by type...">
+
+
+    <table class="table" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Date_don</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="5">
+                </td>
+            </tr>
+            {% for don in dons %}
+                <tr>
+                    <td>{{ don.id }}</td>
+                    <td>{{ don.type }}</td>
+                    <td>{{ don.description }}</td>
+                    <td>{{ don.dateDon ? don.dateDon|date('Y-m-d') : '' }}</td>
+                    <td class="action-links">
+                        <a href="{{ path('app_don_show', {'id': don.id}) }}">Show</a>
+                        <a href="{{ path('app_don_edit', {'id': don.id}) }}">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <script>
+        function searchDon() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector(".table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1]; // Recherche dans la deuxième colonne (Type)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        
+    </script>
+  {# Manual pagination controls #}
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if currentPage > 1 %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ path('app_don_index', {'page': currentPage - 1}) }}">Previous</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% for page in 1..totalPages %}
+                            <li class="page-item{% if page == currentPage %} active{% endif %}">
+                                <a class="page-link" href="{{ path('app_don_index', {'page': page}) }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                        
+                        {% if currentPage < totalPages %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ path('app_don_index', {'page': currentPage + 1}) }}">Next</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+
+    <!-- Inclusion de la bibliothèque Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Code HTML pour le graphique -->
+<h2 style="color:#012970; text-align: center;">Statistique don</h2>
+<div class="category-statistics">
+<canvas id="categoryChart" width="100px" height="100px"></canvas></div>
+
+<!-- Script JavaScript pour initialiser le graphique -->
+    <script>
+        var ctx = document.getElementById('categoryChart').getContext('2d');
+        var colors = ['#88B44E', '#012970'];
+
+        var data = {
+            labels: [
+                {% for stat in donStatistics %}
+                    '{{ stat.type }}',
+                {% endfor %}
+            ],
+            datasets: [{
+                data: [
+                    {% for stat in donStatistics %}
+                        {{ stat.donCount }},
+                    {% endfor %}
+                ],
+                backgroundColor: colors
+            }]
+        };
+
+             var categoryChart = new Chart(ctx, {
+                type: 'pie',
+                data: data
+            });
+    </script>
+
+
+</div>
+
+{% endblock %}
+{% endblock %}

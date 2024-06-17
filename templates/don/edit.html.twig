@@ -1,0 +1,25 @@
+{% extends 'Base-back.html.twig' %}
+{% block dashboard %}
+{% block title %}Edit Don{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mt-5 mb-4">Edit Don</h1>
+
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-8">
+                {{ include('don/_form.html.twig', {'button_label': 'Update'}) }}
+            </div>
+        </div>
+
+        <div class="text-center mb-4">
+            <a href="{{ path('app_don_index') }}" class="btn btn-primary">Back to List</a>
+        </div>
+
+        <div class="text-center">
+            {{ include('don/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% endblock %}

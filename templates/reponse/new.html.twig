@@ -1,0 +1,27 @@
+ {% extends 'base-back.html.twig' %}
+
+{% block title %}New Reponse{% endblock %}
+
+{% block body %}
+<div class="container text-center mt-5">
+    <h1>Ajouter une Reponse</h1>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 mb-3">
+            <label for="exampleFormControlTextarea1">Description</label>
+            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'id': 'exampleFormControlTextarea1', 'rows': '3'}}) }}
+
+            {{ form_errors(form.description) }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    <a class="btn  btn-info" href="{{ path('app_reponse_index') }}">Retour</a>
+
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

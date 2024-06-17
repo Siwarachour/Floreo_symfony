@@ -1,0 +1,32 @@
+{% extends 'Base-front.html.twig' %}
+
+
+
+{% block carousel %}
+    {# Contenu du carousel ici #}
+{% endblock %}
+
+{% block product %}
+    {# Contenu des produits ici #}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center">Create new Don</h2>
+                    </div>
+                    <div class="card-body">
+                        {% block don %}
+                            {{ include('don/_form.html.twig') }}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

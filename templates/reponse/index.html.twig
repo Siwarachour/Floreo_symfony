@@ -1,0 +1,38 @@
+ {% extends 'base-back.html.twig' %}
+
+{% block title %}Reponse {% endblock %}
+
+{% block body %}
+<div style="padding-bottom: 600px;"> <!-- Added left padding here -->
+
+    <h1>Reponse </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Date Reponse</th>
+                <th>Date De Modification</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse in reponses %}
+            <tr>
+                <td>{{ reponse.description }}</td>
+                <td>{{ reponse.dateajout ? reponse.dateajout|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reponse.datemodif ? reponse.datemodif|date('Y-m-d H:i:s'): '' }}</td>
+                <td>
+                    <a href="{{ path('app_reponse_show', {'id': reponse.id}) }}">Detail</a>
+                    <a href="{{ path('app_reponse_edit', {'id': reponse.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base-front.html.twig' %}
+{% block title %}Reclamation {% endblock %}
+  
+ {% block css%}
+    <!-- Favicon -->
+    <link href="{{asset('Front/img/favicon.icon')}}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/Front/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/Front/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    
+    <link href="/Front/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Template Stylesheet -->
+    <link href="/Front/css/style.css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    {% if app.user %}
+        <h1>Liste des reclamations</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Dateajout</th>
+                    <th>Datemodif</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reclamation in reclamations %}
+                    <tr>
+                        <td>{{ reclamation.type }}</td>
+                        <td>{{ reclamation.description }}</td>
+                        <td>{{ reclamation.dateajout ? reclamation.dateajout|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ reclamation.datemodif ? reclamation.datemodif|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">Detail</a>
+                            <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Aucun reclamation trouvé</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_reclamation_new') }}">Ajouter une reclamation</a>
+    {% else %}
+        <p>You must be logged in to view reclamations or add a reclamation.</p>
+    {% endif %}
+{% endblock %}

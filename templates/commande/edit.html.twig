@@ -1,0 +1,25 @@
+{% extends 'Base-back.html.twig' %}
+{% block title %}Edit Commande{% endblock %}
+
+
+
+{% block body %}
+    <div class="container" style="margin-left: 300px; padding: 20px; background-color: #f8f9fa; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);">
+    <h1 class="heading" style="color: #007bff; margin-bottom: 20px;">Edit Commande</h1>
+
+    <div class="form-container">
+        {{ include('commande/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+
+    <div class="button-container" style="margin-top: 20px;">
+        <!-- Any content you want to place here -->
+    </div>
+
+    <div class="delete-form" style="margin-top: 20px;">
+        {{ include('commande/_delete_form.html.twig') }}
+    </div>
+</div>
+
+    <button type="button" class="btn btn-outline-warning" style="margin-top:500px; color:green;border-color:green" onclick="window.location.href='/profile'">Back To Profil</button>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'Base-front.html.twig' %}
+
+
+
+{% block carousel %}
+{% endblock %}
+
+{% block product %}
+{% endblock %}
+
+
+{% block body %}
+    {% block title %}{% endblock %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h1 class="card-title">Deatails du Facture</h1>
+                    </div>
+                    <div class="card-body">
+                        {{ include('facture_don/_form.html.twig') }}
+
+                        <a href="{{ path('app_don_new') }}" class="btn btn-secondary mt-3">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

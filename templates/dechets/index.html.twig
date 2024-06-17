@@ -1,0 +1,102 @@
+{% extends 'Base-back.html.twig' %}
+
+{% block back %}
+    
+{% endblock %}
+
+{% block body %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet"> 
+    <div class="container mt-5">
+        <div style="padding-left: 180px;"> <!-- Added left padding here -->
+            <h1 class="mb-4 text-center text-primary">Liste des Dechets </h1>
+            <input type="text" id="searchInput" placeholder="Search...">
+
+            <div class="table-responsive">
+                <a href="{{ path('app_dechets_DR') }}" class="bi bi-arrow-up-circle-fill" style="font-size: 2rem;"></a>
+                <a href="{{ path('app_dechets_CR') }}" class="bi bi-arrow-down-circle-fill" style="font-size: 2rem;"></a>
+
+                <table class="table table-bordered table-hover shadow">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Id</th>
+                            <th>Type</th>
+                            <th>Date Entre</th>
+                            <th>Quantite</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for dechet in dechets %}
+                            <tr>
+                                <td>{{ dechet.id }}</td>
+                                <td>{{ dechet.type }}</td>
+                                <td>{{ dechet.dateEntre ? dechet.dateEntre|date('Y-m-d') : '' }}</td>
+                                <td>{{ dechet.quantite }}</td>
+                                <td>{{ dechet.description }}</td>
+                                <td>
+                                    <a href="{{ path('app_dechets_show', {'id': dechet.id}) }}" class="btn btn-info btn-sm">Show</a>
+                                    <a href="{{ path('app_dechets_edit', {'id': dechet.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6" class="text-center">No records found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center">
+                <a href="{{ path('app_dechets_new') }}" class="btn btn-success">Create New</a>
+            </div>
+    </div>
+    {{ knp_pagination_render(dechets) }}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <canvas id="productChart"></canvas>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('productChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ productData|map(p => p.type)|json_encode|raw }},
+                    datasets: [{
+                        label: 'Number of Dechets by Type',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: {{ productData|map(p => p.typeCount)|json_encode|raw }},
+                    }]
+                },
+                options: {}
+            });
+        });
+    </script>
+</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById("searchInput");
+            const rows = document.querySelectorAll("table tbody tr");
+
+            searchInput.addEventListener("input", function() {
+                const searchText = this.value.toLowerCase();
+
+                rows.forEach(row => {
+                    const type = row.querySelector("td:nth-child(1)").textContent.toLowerCase();
+                    const date_entre = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+                    const quantite = row.querySelector("td:nth-child(3)").textContent.toLowerCase();
+                    const description = row.querySelector("td:nth-child(4)").textContent.toLowerCase();
+                
+                    if (type.includes(searchText) || date_entre.includes(searchText) || quantite.includes(searchText) || description.includes(searchText)) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

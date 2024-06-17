@@ -1,0 +1,33 @@
+ {% extends 'base-back.html.twig' %}
+
+{% block title %}Edit Reponse{% endblock %}
+
+{% block body %}
+<div class="container text-center mt-5">
+
+        <h1>Modifier cette Reponse</h1>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 mb-3">
+            <label for="exampleFormControlTextarea1">Description</label>
+            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'id': 'exampleFormControlTextarea1', 'rows': '3'}}) }}
+
+            {{ form_errors(form.description) }}
+        </div>
+    </div>
+
+     <button type="submit" class="btn btn-primary">Modifier</button>
+    <a class="btn  btn-info" href="{{ path('app_reponse_index') }}">Retour</a>
+    <br>
+
+    {{ form_end(form) }}
+
+<br>
+   
+    
+
+    {{ include('reponse/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

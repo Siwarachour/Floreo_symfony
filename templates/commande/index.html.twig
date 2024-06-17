@@ -1,0 +1,39 @@
+{% extends 'Base-back.html.twig' %}
+{% block com %}
+<!-- Form Section Start -->
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">Commande Form</h2>
+                    {{ form_start(form, {'attr': {'class': 'my-form-class'}}) }}
+                      
+                        <div class="mb-3">
+                            {{ form_label(form.datecmd, 'Date Commande', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.datecmd, {'attr': {'class': 'form-control', 'placeholder': 'Select Date'}}) }}
+                            {{ form_errors(form.datecmd) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.lieucmd, 'Lieucmd', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.lieucmd, {'attr': {'class': 'form-control', 'placeholder': 'Enter Lieucmd'}}) }}
+                            {{ form_errors(form.lieucmd) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.quantite, 'Quantite', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.quantite, {'attr': {'class': 'form-control', 'placeholder': 'Enter Quantite'}}) }}
+                            {{ form_errors(form.quantite) }}
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+  

@@ -1,0 +1,53 @@
+{% extends 'Base-back.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+<div style="text-align: center; margin-left:180px;">
+    <h1 style="font-family: 'Arial', sans-serif; font-size: 24px; color: #333; border-collapse: collapse;">User</h1>
+
+    <table class="table" style="margin: 0 auto; width: 50%;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="padding: 8px; border: 1px solid #ddd;">Attribute</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">ID</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Name of User</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ user.name }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Lastname of User</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Email</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Password</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th style="padding: 8px; border: 1px solid #ddd;">Number</th>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ user.number }}</td>
+            </tr>
+           
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-info btn-rounded" data-mdb-ripple-init style="margin-top: 20px; border-radius: 50px;" onclick="window.location.href='{{ path('app_user') }}'">Back to List</button>
+
+    <button type="button" class="btn btn-info btn-rounded" data-mdb-ripple-init style="margin-top: 20px; border-radius: 50px;" onclick="window.location.href='{{ path('app_user_update', {'id': user.id}) }}'">Edit</button>
+
+    {{ include('user/_delete_form.html.twig') }}
+</div>
+  <button style="padding-top:450px;"type="submit" class="btn btn-outline-warning" ><a  href="/user"></a>Ajouter nouveau</button>
+    
+{% endblock %}

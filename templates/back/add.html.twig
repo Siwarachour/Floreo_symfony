@@ -1,0 +1,54 @@
+{% extends 'Base-back.html.twig' %}
+{% block title %}Edit Commande{% endblock %}
+
+
+
+{% block body %}
+
+
+<!-- Form Section Start -->
+ <tbody>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">Produit Form</h2>
+                    {{ form_start(form, {'attr': {'class': 'my-form-class'}}) }}
+                        <div class="mb-3">
+                            {{ form_label(form.nomp, 'Nom du Produit', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.nomp, {'attr': {'class': 'form-control', 'placeholder': 'Enter Nom du Produit'}}) }}
+                            {{ form_errors(form.nomp) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.descp, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.descp, {'attr': {'class': 'form-control', 'placeholder': 'Enter Description'}}) }}
+                            {{ form_errors(form.descp) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.catg, 'Catégorie', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.catg, {'attr': {'class': 'form-control', 'placeholder': 'Enter Catégorie'}}) }}
+                            {{ form_errors(form.catg) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.prix, 'Prix', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.prix, {'attr': {'class': 'form-control', 'placeholder': 'Enter Prix'}}) }}
+                            {{ form_errors(form.prix) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.image, 'Image', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.image, {'attr': {'class': 'form-control', 'placeholder': 'Choose Image'}}) }}
+                            {{ form_errors(form.image) }}
+                        </div>
+                     
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Form Section End -->
+{% endblock %}

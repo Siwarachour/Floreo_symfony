@@ -1,0 +1,108 @@
+{% extends 'Base-back.html.twig' %}
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+<div style="margin-left:300px">
+<br>
+
+
+    <div style="margin: 20px;">
+        <h1 style="color: #333; font-size: 24px; margin-bottom: 20px; text-align: center;">Commande
+            
+        </h1>
+
+        {% for commande in commande %}
+            <table class="table" style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; margin-bottom: 20px;">
+                <tbody>
+                    <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2; width: 30%;">Montant</th>
+                        <td style="padding: 10px;">{{ commande.montant }}</td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Datecmd</th>
+                        <td style="padding: 10px;">{{ commande.datecmd ? commande.datecmd|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Lieucmd</th>
+                        <td style="padding: 10px;">{{ commande.lieucmd }}</td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Quantité</th>
+                        <td style="padding: 10px;">{{ commande.quantite }}</td>
+                    </tr>
+                        <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Id produit</th>
+                        <td style="padding: 10px;">{{ commande.produit.id }}</td>
+                    </tr>
+                       <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Nom produit</th>
+                        <td style="padding: 10px;">{{ commande.produit.nomp }}</td>
+                    </tr>
+                       <tr>
+                        <th style="padding: 10px; background-color: #f2f2f2;">Prix produit</th>
+                        <td style="padding: 10px;">{{ commande.produit.prix }}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+            <a href="{{ path('app_commande_edit', {'id': commande.id}) }}" style="text-decoration: none; color: #007bff; margin-right: 10px; display: block; text-align: center;">Edit</a>
+           <a href="{{ path('pdfDhia') }}" style="text-decoration: none; color: #28a745; margin-right: 10px; display: inline-block; text-align: center;">
+    <i class="fas fa-file-pdf fa-lg" style="margin-right: 5px;"></i> Reçus
+</a>    
+            <a class="btn btn-sm btn-primary" href="{{ path('sms') }}">Envoyer un SMS</a>
+
+        {% endfor %}
+
+    </div>
+    {# Pagination #}
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="text-center">
+				{{ knp_pagination_render(commande) }}
+			</div>
+		</div>
+	</div>
+
+	{# style of pagination #}
+	<style>
+		.pagination {
+			display: flex;
+			justify-content: center;
+			list-style: none;
+			padding: 0;
+		}
+
+		.pagination li {
+			margin: 0 5px;
+		}
+
+		.button-container {
+			display: flex;
+			flex-direction: row;
+			overflow-x: auto;
+			white-space: nowrap;
+		}
+
+
+		.button-container button {
+			margin-right: 10px; /* Espacement entre les boutons */
+		}
+
+		.pagination a {
+			text-decoration: none;
+			padding: 5px 10px;
+			border: 1px solid #404a3d; /* Bleu */
+			border-radius: 3px;
+			color: #404a3d; /* Bleu */
+		}
+
+		.pagination a:hover {
+			background-color: #404a3d; /* Bleu au survol */
+			color: #fff; /* Texte blanc au survol */
+		}
+	</style>
+</div>
+{% endblock %}
+
+

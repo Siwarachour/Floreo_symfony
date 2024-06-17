@@ -1,0 +1,111 @@
+
+{% extends 'fan.html.twig' %}
+
+{% block title %}New Personne{% endblock %}
+
+{% block body %}
+    <section class="py-lg-5">
+        <div class="container">
+           {% if user %}
+            <div class="row">
+                <div class="col">
+                    <div class="card box-shadow-xl overflow-hidden mb-5">
+                        <div class="row">
+                            <div class="col-lg-5 position-relative bg-cover px-0" style="background-image: url('{{asset('Front/img/33.jpg')}}')" loading="lazy">
+                                <div class="z-index-2 text-center d-flex h-100 w-100 d-flex m-auto justify-content-center">
+                                    <div class="mask bg-gradient-dark opacity-8"></div>
+                                    <div class="p-5 ps-sm-8 position-relative text-start my-auto z-index-2">
+                                        <h3 class="text-black">Informations Profil</h3>
+                                        <p class="text-black opacity-8 mb-4">.</p>
+                                        <div class="d-flex p-2 text-black" style="color:#7b197d">
+                                            <div>
+                                                <i class="fas fa-phone text-sm">          {{ user.number }} </i>
+                                            </div>
+                                            
+                                            <div class="ps-3">
+                                                <span class="text-sm opacity-8" style="color:#7b197d"></span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex p-2 text-white">
+                                            <div>
+                                                <i class="fas fa-envelope text-sm"style="color:#7b197d">{{  user.email }} </i>
+                                            </div>
+                                            
+                                         
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <form class="p-3" id="contact-form" method="post">
+                                    <div class="card-header px-4 py-sm-5 py-3">
+                                <form class="p-3" id="contact-form" method="post">
+    <div class="card-header px-4 py-sm-5 py-3">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Say Hi!</h2>
+                <p class="lead">Plus d'informations</p>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group input-group-static mb-4" style="color:#7b197d">
+                    {% if user.image %}
+                        <div style="width: 150px; height: 150px; background-image: url('{{ asset('uploads/' ~ user.image) }}'); background-size: cover; background-position: center;" loading="lazy"></div>
+                    {% else %}
+                        <div style="width: 150px; height: 150px; background-color: #f0f0f0;"></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+                                    </div>
+                                    <div class="card-body pt-1">
+<div class="row">
+    <div class="col-md-12 pe-2 mb-3">
+        <div class="input-group input-group-static mb-4">
+            <label ><h1 style="color:#7b197d">Name:</h1 >  {{ user.name }}</label>
+        </div>
+    </div>
+</div>
+ 
+    <div class="row">
+        <div class="col-md-12 pe-2 mb-3">
+            <div class="input-group input-group-static mb-4">
+                <label><h1 style="color:#7b197d">Last Name:</h1>{{ user.lastname }}</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 pe-2 mb-3">
+            <div class="input-group input-group-static mb-4">
+                <label><h1 style="color:#7b197d">Acount State:</h1>Active</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 pe-2 mb-3">
+            <div class="input-group input-group-static mb-4">
+                <label><h1 style="color:#7b197d">Roles:</h1>
+                {% if user.roles is iterable %}
+                    <ul>
+                        {% for role in user.roles %}
+                            {{ role }}
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <span>{{ user.roles }}</span>
+                {% endif %}
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+                 {% endif %}
+        </div>
+    </section>
+   <button type="button" class="btn btn-outline-warning" style="margin-left:550px; color:green;border-color:green" onclick="window.location.href='/profile/update'">Update Profil</button>
+
+{% endblock %}
